@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const uploadDir = path.join(__dirname, "uploads");
 const outputDir = path.join(__dirname, "output");
-const frontendDir = path.join(__dirname, "..", "FRONTEND");
+const frontendDir = path.join(__dirname);
 
 if (!fs.existsSync(uploadDir))
     fs.mkdirSync(uploadDir);
@@ -46,13 +46,8 @@ const storage = multer.diskStorage({
 const upload=multer({storage});
 
 // ---------------- cipher.exe ----------------
+const cipherPath = path.join(__dirname, "cipher");
 
-const cipherPath = path.join(
-    __dirname,
-    "..",
-    "C_PROGRAM",
-    "cipher.exe"
-);
 
 function deleteFileIfExists(filePath) {
     fs.unlink(filePath, (err) => {
